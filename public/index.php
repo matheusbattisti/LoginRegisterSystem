@@ -5,5 +5,3 @@
 	$route = new \Core\Route();
 
  ?>
-
- <h1>Starting Project</h1>
