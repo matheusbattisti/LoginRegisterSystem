@@ -4,7 +4,7 @@
 
 	use Conn;
 
-	abstract class Crud extends Conn {
+	abstract class Crud {
 
 		protected $db;
 		protected $table;

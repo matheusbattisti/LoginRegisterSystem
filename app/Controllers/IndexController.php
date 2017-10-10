@@ -9,12 +9,5 @@
 		public function index() {
 			$this->render('index');
 		}
-		
-		public function login() {
-			echo 'login';
-		}
 
-		public function register() {
-			echo 'register';
-		}
 	}
