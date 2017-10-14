@@ -9,6 +9,12 @@
 	{
 		public function index() {
 
+			echo 'tela de register';
+			
+		}
+
+		public function post() {
+
 			$user = Container::getModel("User");
 			$user->registerUser($_POST);
 			

@@ -28,7 +28,12 @@
 						'senha' => $userPass
 					];
 
-					$this->insert($data);
+					$response = $this->insert($data);
+
+					if($response == true) {
+						header('Location: /');
+					}
+
 
 				} else {
 					header('Location: /');
@@ -38,5 +43,26 @@
 				header('Location: /');
 			}
 
+		}
+
+		public function authenticateUser($data) {
+			
+			//checando se as variaveis vieram no post
+			if(isset($_POST['email']) && $_POST['email'] != "") {
+
+				$userEmail = $_POST['email'];
+				$userPass = $_POST['password'];
+
+				$userData = $this->findByEmail($userEmail);
+
+				if($userPass == $userData['senha']) {
+					echo 'parabens está logado';
+				} else {
+					header('Location: /');
+				}
+
+			} else {
+				header('Location: /');
+			}
 		}
 	}

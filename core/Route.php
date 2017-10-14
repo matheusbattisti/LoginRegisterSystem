@@ -8,8 +8,8 @@
 	{
 		protected function initRoutes() {
 			$routes['home'] = array('route'=>'/', 'controller'=>'IndexController', 'action'=>'index');
-			$routes['login'] = array('route'=>'/login', 'controller'=>'LoginController', 'action'=>'index');
-			$routes['register'] = array('route'=>'/register', 'controller'=>'RegisterController', 'action'=>'index');
+			$routes['loginpost'] = array('route'=>'/login/post', 'controller'=>'LoginController', 'action'=>'post');
+			$routes['registerpost'] = array('route'=>'/register/post', 'controller'=>'RegisterController', 'action'=>'post');
 			$routes['admin'] = array('route'=>'/admin', 'controller'=>'AdminController', 'action'=>'index');
 			$this->setRoutes($routes);
 		}
