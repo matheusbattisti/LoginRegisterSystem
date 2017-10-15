@@ -2,6 +2,9 @@
 
 	namespace App\Models;
 
+	//incluindo arquivo com constantes
+	include_once '../config/Constants.php';
+
 	use Core\Crud;
 
 	class User extends Crud
@@ -25,7 +28,7 @@
 					$data = [
 						'email' => $userEmail,
 						'nome'  => $userName,
-						'senha' => $userPass
+						'senha' => password_hash($userPass, PASSWORD_DEFAULT, ['cost' => 12])
 					];
 
 					$response = $this->insert($data);
@@ -55,8 +58,16 @@
 
 				$userData = $this->findByEmail($userEmail);
 
-				if($userPass == $userData['senha']) {
-					echo 'parabens está logado';
+				if($userData != '') {
+
+					$checked = password_verify($userPass, $userData['senha']);
+
+					if($checked) {
+						echo 'parabens está logado';
+					} else {
+						header('Location: /');
+					}
+
 				} else {
 					header('Location: /');
 				}
