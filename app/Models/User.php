@@ -2,9 +2,6 @@
 
 	namespace App\Models;
 
-	//incluindo arquivo com constantes
-	include_once '../config/Constants.php';
-
 	use Core\Crud;
 
 	class User extends Crud
@@ -14,8 +11,10 @@
 
 		public function registerUser($data) {
 
-			//checando se as variaveis vieram no post
-			if(isset($_POST['email']) && $_POST['email'] != "") {
+			$emailExists = $this->findByEmail($_POST['email']);
+
+			//checando se as variaveis vieram no post, e se o email ja existe no banco
+			if(isset($_POST['email']) && $_POST['email'] != "" && $emailExists == '') {
 
 				$userName = $_POST['name'];
 				$userEmail = $_POST['email'];
