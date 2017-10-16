@@ -1,0 +1,17 @@
+<?php 
+	
+	if(isset($_SESSION) && isset($_SESSION['message'])):
+
+		if($_SESSION['message'] != ''):
+		
+	?>
+
+	<div class="col-md-12">
+		<p class="bg-<?php echo $_SESSION['message-type']; ?>"><?php echo $_SESSION['message']; ?></p>
+	</div>
+
+<?php
+		endif;
+	endif;
+
+ ?>

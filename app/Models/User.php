@@ -3,6 +3,7 @@
 	namespace App\Models;
 
 	use Core\Crud;
+	use Core\Messages;
 
 	class User extends Crud
 	{
@@ -33,6 +34,10 @@
 					$response = $this->insert($data);
 
 					if($response == true) {
+
+						//caso o usuario registre, limpa as mensagens
+						Messages::clearMessage();
+
 						header('Location: /');
 					}
 
@@ -42,7 +47,11 @@
 				}
 
 			} else {
+
+				Messages::setMessage('warning', 'O e-mail não pode ser vazio ou já existe na base de dados!');
+
 				header('Location: /');
+
 			}
 
 		}
@@ -62,7 +71,13 @@
 					$checked = password_verify($userPass, $userData['senha']);
 
 					if($checked) {
+						//caso o usuario autentique, limpa as mensagens
+						Messages::clearMessage();
+
 						echo 'parabens está logado';
+
+						header('Location: /');
+						
 					} else {
 						header('Location: /');
 					}
