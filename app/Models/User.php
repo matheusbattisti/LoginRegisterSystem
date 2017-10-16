@@ -37,21 +37,18 @@
 
 						//caso o usuario registre, limpa as mensagens
 						Messages::clearMessage();
-
 						header('Location: /');
 					}
 
 
 				} else {
+					Messages::setMessage('warning', 'A senha e a confirmação de senha não estão iguais!');
 					header('Location: /');
 				}
 
 			} else {
-
 				Messages::setMessage('warning', 'O e-mail não pode ser vazio ou já existe na base de dados!');
-
 				header('Location: /');
-
 			}
 
 		}
@@ -73,20 +70,20 @@
 					if($checked) {
 						//caso o usuario autentique, limpa as mensagens
 						Messages::clearMessage();
-
-						echo 'parabens está logado';
-
 						header('Location: /');
 						
 					} else {
+						Messages::setMessage('warning', 'Usuário ou senha incorretos!');
 						header('Location: /');
 					}
 
 				} else {
+					Messages::setMessage('warning', 'Usuário ou senha incorretos!');
 					header('Location: /');
 				}
 
 			} else {
+				Messages::setMessage('warning', 'Usuário ou senha incorretos!');
 				header('Location: /');
 			}
 		}
