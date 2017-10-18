@@ -11,9 +11,21 @@
 		    }
 		}
 
-		public function initSession()
+		public static function initSession()
 		{
 		    session_start();
+		}
+
+		public static function checkSessionId() 
+		{
+			if(!isset($_SESSION['id'])) { 
+			    header("Location: /");
+			}
+		}
+
+		public static function destroySession()
+		{
+			session_destroy();
 		}
 
 	}

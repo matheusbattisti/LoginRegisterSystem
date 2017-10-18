@@ -4,6 +4,7 @@
 
 	use Core\Crud;
 	use Core\Messages;
+	use Core\Session;
 
 	class User extends Crud
 	{
@@ -36,7 +37,7 @@
 					if($response == true) {
 
 						//caso o usuario registre, limpa as mensagens
-						Messages::clearMessage();
+						Messages::setMessage('success', 'Usuário cadastrado com sucesso!');
 						header('Location: /');
 					}
 
@@ -70,7 +71,8 @@
 					if($checked) {
 						//caso o usuario autentique, limpa as mensagens
 						Messages::clearMessage();
-						header('Location: /');
+						$_SESSION['id'] = $userData['id'];
+						header('Location: /admin');
 						
 					} else {
 						Messages::setMessage('warning', 'Usuário ou senha incorretos!');
@@ -86,5 +88,13 @@
 				Messages::setMessage('warning', 'Usuário ou senha incorretos!');
 				header('Location: /');
 			}
+		}
+
+		public function logout()
+		{
+			Session::destroySession();
+			Messages::setMessage('success', 'Logout efetuado com sucesso!');
+			header('Location: /');
+			exit;
 		}
 	}
