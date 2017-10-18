@@ -4,6 +4,7 @@
 
 	class Session
 	{
+
 		public function __construct()
 		{
 		    if(!isset($_SESSION)) {
@@ -12,15 +13,18 @@
 		}
 
 		public static function initSession()
-		{
-		    session_start();
+		{	
+		    session_start(); 
 		}
 
 		public static function checkSessionId() 
-		{
-			if(!isset($_SESSION['id'])) { 
+		{	
+			$id = session_id();
+
+			if(!isset($id)) { 
 			    header("Location: /");
 			}
+			
 		}
 
 		public static function destroySession()
