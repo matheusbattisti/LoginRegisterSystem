@@ -70,6 +70,7 @@
 
 					if($checked) {
 						//caso o usuario autentique, limpa as mensagens
+						$_SESSION['user']['id'] = $userData['id'];
 						Messages::clearMessage();
 						header('Location: /admin');
 						

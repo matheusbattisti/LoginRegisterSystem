@@ -3,6 +3,7 @@
 	namespace Core;
 
 	use Core\Session;
+	use Core\Messages;
 
 	abstract class Action {
 
@@ -35,6 +36,8 @@
 
 			//incluindo a view de mensagens
 			include_once "../app/Views/messages/messages.phtml";
+
+			Messages::checkMessage();
 
 			//incluindo a view
 			include_once "../app/Views/" . $singleClassName . "/" . $this->action . ".phtml";

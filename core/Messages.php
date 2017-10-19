@@ -25,4 +25,13 @@
 			unset($_SESSION['message']);
 		}
 
+		public static function checkMessage() {
+			$previousUrl = $_SERVER['HTTP_REFERER'];
+			$current     = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+
+			print_r($previousUrl);
+			print_r($current);
+			//exit();
+		}
+
 	}

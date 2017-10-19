@@ -19,8 +19,8 @@
 
 		public static function checkSessionId() 
 		{	
-			$id = session_id();
-
+			$id = $_SESSION['user']['id'];
+			
 			if(!isset($id)) { 
 			    header("Location: /");
 			}

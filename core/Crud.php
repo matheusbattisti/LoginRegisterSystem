@@ -42,8 +42,18 @@
 				foreach($data as $chave => $valor) {
 					$dados[] = $chave . " = '" . addslashes($valor) . "'";
 				}
+
 				$sql .= implode(", ", $dados);
-				$this->db->query($sql);
+
+				$this->db->prepare($sql);
+
+				print_r($sql); exit();
+
+				foreach ($data as $chave => $valor) {
+				    $sql->bindValue($chave, $valor);  // bind the value to the statement
+				}
+
+				$this->db->execute($sql);
 
 				return true;
 			}
