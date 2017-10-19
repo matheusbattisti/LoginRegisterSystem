@@ -37,7 +37,7 @@
 			//incluindo a view de mensagens
 			include_once "../app/Views/messages/messages.phtml";
 
-			Messages::checkMessage();
+			Messages::setMessage('', '');
 
 			//incluindo a view
 			include_once "../app/Views/" . $singleClassName . "/" . $this->action . ".phtml";

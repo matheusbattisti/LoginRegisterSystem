@@ -39,21 +39,21 @@
 			if(!empty($this->table) && (is_array($data) && count($data) > 0)) {
 				$sql = "INSERT INTO " . $this->table . " SET ";
 				$dados = array();
+
 				foreach($data as $chave => $valor) {
-					$dados[] = $chave . " = '" . addslashes($valor) . "'";
+					$dados[] = $chave . " = " . ":" . $chave;
 				}
 
 				$sql .= implode(", ", $dados);
 
-				$this->db->prepare($sql);
-
-				print_r($sql); exit();
+				$stmt = $this->db->prepare($sql);
 
 				foreach ($data as $chave => $valor) {
-				    $sql->bindValue($chave, $valor);  // bind the value to the statement
+					$chaveValue = ":" . $chave;
+				    $stmt->bindValue($chaveValue , $valor);  // bind the value to the statement
 				}
 
-				$this->db->execute($sql);
+				$stmt->execute();
 
 				return true;
 			}
