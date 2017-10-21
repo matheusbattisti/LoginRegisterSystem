@@ -29,7 +29,12 @@
 
 		public static function destroySession()
 		{
-			session_destroy();
+			unset($_SESSION['user']['id']);
+		}
+
+		public static function destroyMessages()
+		{
+			unset($_SESSION['message']);
 		}
 
 	}

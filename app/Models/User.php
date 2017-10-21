@@ -16,10 +16,10 @@
 			$emailExists = $this->findByEmail($_POST['email']);
 
 			//checando se as variaveis vieram no post, e se o email ja existe no banco
-			if(isset($_POST['email']) && $_POST['email'] != "" && $emailExists == '') {
+			if(isset($_POST['email']) && !empty($_POST['email']) && $emailExists == '') {
 
-				$userName = $_POST['name'];
-				$userEmail = $_POST['email'];
+				$userName = addslashes($_POST['name']);
+				$userEmail = addslashes($_POST['email']);
 				$userPass = $_POST['password'];
 				$userConfirmPass = $_POST['confirmpassword'];
 
@@ -59,12 +59,12 @@
 			//checando se as variaveis vieram no post
 			if(isset($_POST['email']) && $_POST['email'] != "") {
 
-				$userEmail = $_POST['email'];
+				$userEmail = addslashes($_POST['email']);
 				$userPass = $_POST['password'];
 
 				$userData = $this->findByEmail($userEmail);
 
-				if($userData != '') {
+				if(!empty($userData)) {
 
 					$checked = password_verify($userPass, $userData['senha']);
 
